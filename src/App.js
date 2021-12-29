@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Counter from "./components/counter";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Button } from "react-bootstrap";
+
+class App extends React.Component {
+  //step1: declare a dynamic data + initialvalue=true
+  //step2: state management : true==> false/ false==> true
+
+  //phenomene cligneton: 2 parts
+  //step1: declare a boolean dynamic variable
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      show: true,
+    };
+  }
+  showHandler = () => {
+    this.setState({
+      show: !this.state.show,
+    });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Workshop state </h1>
+        <Button variant="danger" onClick={this.showHandler}>
+          {this.state.show ? "HIde" : "show"}{" "}
+        </Button>
+        {this.state.show && (
+          <>
+            <Counter />
+          </>
+        )}
+      </div>
+    );
+  }
 }
-
 export default App;
